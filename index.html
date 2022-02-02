@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="./index.js"></script>
+  <title>Generación facturas</title>
+</head>
+<body>
+  
+  <h1>Generación de facturas</h1>
+
+  <section>
+    
+    <h2>Datos de la empresa</h2>
+
+    <dl id="displayCompany"></dl>
+
+  </section>
+
+  <section>
+
+    <h2>Datos del comprador</h2>
+
+    <p>
+      Introduzca sus datos en el siguiente formulario.
+    </p>
+
+    <form id="clientForm">
+
+      <fieldset>
+
+        <legend>
+          Información personal
+        </legend>
+
+        <label>
+          Nombre
+          <input type="text" id="clientName">
+        </label>
+  
+        <label>
+          CIF
+          <input type="text" id="clientCIF">
+        </label>
+
+      </fieldset>
+
+      <fieldset>
+        
+        <legend>
+          Dirección
+        </legend>
+        
+        <label>
+          Calle
+          <input type="text" id="clientStreet">
+        </label>
+
+        <label>
+          Ciudad
+          <input type="text" id="clientCity">
+        </label>
+
+        <label>
+          Código postal
+          <input type="text" pattern="\d{5}" id="clientPostcode">
+        </label>
+
+      </fieldset>
+
+      <input type="submit" value="Enviar">
+      <input type="reset" value="Limpiar">
+
+    </form>
+
+    <section>
+
+      <h3>Ha introducido esta información:</h3>
+
+      <dl id="displayClient"></dl>
+
+    </section>
+
+  </section>
+
+  <section>
+    
+    <h2>Catálogo de productos</h2>
+
+    <table id="catalogue">
+      <tr>
+        <th>Productos</th>
+        <th>Precio</td>
+        <th>Cantidad</th>
+      </tr>
+    </table>
+  </section>
+
+</body>
+</html>

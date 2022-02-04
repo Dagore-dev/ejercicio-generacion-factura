@@ -9,21 +9,31 @@ export default function displayProducts () {
   $CATALOGUE.appendChild(fragment)
 }
 
-function createRecord ( { id, name, price }, parentElement ) {
+function createRecord ( { id, name, price }, fragment ) {
+  //Creacción de elementos
   const $RECORD = document.createElement('tr')
   const $NAME = document.createElement('td')
   const $PRICE = document.createElement('td')
   const $QUANTITY = document.createElement('td')
-  $RECORD.dataset.product = `product${id}`
+  const $INPUT = document.createElement('input')
+
+  //Atributos del input
+  $INPUT.setAttribute('type', 'number')
+  $INPUT.setAttribute('value', '0')
+  $INPUT.setAttribute('min', '0')
+
+  //Valores de los elementos
+  $RECORD.dataset.product = `${id}`
   $NAME.innerText = name
   $PRICE.innerText = formatPrice(price)
-  $QUANTITY.innerText = 0
+  $QUANTITY.appendChild($INPUT)
 
+  //Combinación de los elementos en el $RECORD y el fragment
   $RECORD.appendChild($NAME)
   $RECORD.appendChild($PRICE)
   $RECORD.appendChild($QUANTITY)
 
-  parentElement.appendChild($RECORD)
+  fragment.appendChild($RECORD)
 }
 
 function formatPrice (price) {

@@ -1,4 +1,5 @@
 import products from '../placeholders/products.js'
+import formatPrice from './formatPrice.js'
 
 export default function displayProducts () {
   const $CATALOGUE = document.querySelector('#catalogue tbody')
@@ -34,16 +35,4 @@ function createRecord ( { id, name, price }, fragment ) {
   $RECORD.appendChild($QUANTITY)
 
   fragment.appendChild($RECORD)
-}
-
-function formatPrice (price) {
-  const splittedPrice = price.toString().split('.')
-  
-  if (!splittedPrice[1]) {
-    splittedPrice[1] = '0'
-  }
-
-  splittedPrice[1] = splittedPrice[1].padStart(2, '0')
-
-  return `${splittedPrice.join(',')} €`.padStart(7, '0')
 }

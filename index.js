@@ -5,6 +5,12 @@ import companyInfo from "./js/placeholders/companyInfo.js"
 import Client from "./js/models/Client.js"
 import productAndQuantity from "./js/helpers/productAndQuantity.js"
 import Invoice from "./js/models/Invoice.js"
+import displayInvoice from "./js/helpers/displayInvoice.js"
+
+//Inyección de placeholders: información de la compañia y catalogo de productos.
+
+displayCompany()
+displayProducts()
 
 //Formulario de nuevo cliente
 const $CLIENTFORM = document.getElementById('clientForm')
@@ -14,12 +20,6 @@ const $STREET = document.getElementById('clientStreet')
 const $CITY = document.getElementById('clientCity')
 const $POSTCODE = document.getElementById('clientPostcode')
 let currentClient;
-
-//Formulario de compra
-const $PRODUCTSFORM = document.getElementById('productsForm')
-
-displayCompany()
-displayProducts()
 
 function handleNewClient ( e ) {
   e.preventDefault()
@@ -36,15 +36,22 @@ function handleNewClient ( e ) {
   displayClient(currentClient)
 }
 
+$CLIENTFORM.addEventListener('submit', handleNewClient)
+
+//Formulario de nueva compra
+const $PRODUCTSFORM = document.getElementById('productsForm')
+
 function handleNewInvoice ( e ) {
   e.preventDefault()
   const $PRODUCTSLIST = document.querySelectorAll('tr[data-product]')
 
   if (currentClient) {
-    const products = [...$PRODUCTSLIST].map(record => productAndQuantity(record))
+    const products = [...$PRODUCTSLIST]
+      .map(record => productAndQuantity(record))
     const invoice = new Invoice(companyInfo, currentClient, products)
+    
+    displayInvoice(invoice)
   }
 }
 
-$CLIENTFORM.addEventListener('submit', handleNewClient)
 $PRODUCTSFORM.addEventListener('submit', handleNewInvoice)
